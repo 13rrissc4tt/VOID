@@ -94,6 +94,38 @@ letter-spacing:6px;
 opacity:0.4;
 }
 
+/* Segundo temporizador bizarro (letras em vez de números) */
+#weird-timer{
+	position:absolute;
+	top:18px;
+	right:18px;
+	font-size:14px;
+	letter-spacing:6px;
+	text-transform:lowercase;
+	color:#dfeeff;
+	opacity:0.95;
+	font-weight:700;
+	backdrop-filter:blur(2px);
+	mix-blend-mode:screen;
+	transform:skewX(-8deg) translateZ(0);
+}
+
+#weird-seq{
+	margin-left:10px;
+	display:inline-block;
+	font-family:monospace;
+	letter-spacing:2px;
+	color:#fff;
+	text-shadow:0 0 8px rgba(150,200,255,0.25), 0 0 18px rgba(80,140,255,0.06);
+	animation:weirdPulse 800ms steps(1, end) infinite;
+}
+
+@keyframes weirdPulse{
+	0%{filter:blur(0.6px) hue-rotate(0deg); transform:translateY(0.2px) scale(1.00);}
+	50%{filter:blur(1.6px) hue-rotate(12deg); transform:translateY(-0.6px) scale(1.02);}
+	100%{filter:blur(0.6px) hue-rotate(0deg); transform:translateY(0.2px) scale(1.00);}
+}
+
 @keyframes drift{
 	from{transform:translateX(-6%);}
 	to{transform:translateX(6%);}
@@ -108,6 +140,10 @@ opacity:0.4;
 	<div id="album"></div>
 </div>
 <div id="artist">IERRIS SCATT</div>
+
+<!-- Segundo temporizador bizarro: mostra letras e tem o rótulo "timer" -->
+<div id="weird-timer">timer <span id="weird-seq">████</span></div>
+
 <div id="timer">████ ████ ████</div>
 
 <script>
@@ -123,6 +159,23 @@ return t;
 setInterval(()=>{
 document.getElementById("timer").innerText=randomText();
 },1200);
+
+// Bizarro: atualiza letras infinitamente para o segundo temporizador
+function randomLetters(len){
+	const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	let out="";
+	for(let i=0;i<len;i++){
+		out+=letters[Math.floor(Math.random()*letters.length)];
+		if(i%4===3 && i!==len-1) out+=" ";
+	}
+	return out;
+}
+
+setInterval(()=>{
+	const el = document.getElementById('weird-seq');
+	if(!el) return;
+	el.textContent = randomLetters(12);
+},120);
 </script>
 
 </body>
