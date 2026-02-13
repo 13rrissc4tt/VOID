@@ -14,31 +14,43 @@ box-sizing:border-box;
 body{
 background:#000;
 color:#fff;
-font-family:monospace;
-overflow:hidden;
+font-family:Arial, Helvetica, sans-serif;
 height:100vh;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-position:relative;
+overflow:hidden;
 }
 
-/* Fundo leve com ruído */
+/* Fundo preto puro */
 body::before{
 content:"";
 position:absolute;
 width:100%;
 height:100%;
-background:radial-gradient(circle at center, #110000 0%, #000 70%);
-opacity:0.9;
+background:#000;
 z-index:-2;
 }
 
-/* Glitch leve */
-.glitch{
-animation:glitch 3s infinite;
+/* Capa real */
+#album{
+width:380px;
+height:380px;
+background:url('void.jpg') center/cover no-repeat;
+box-shadow:0 0 80px rgba(255,255,255,0.05);
+animation:glitch 5s infinite;
 }
 
+/* Nome */
+#artist{
+margin-top:30px;
+font-size:22px;
+letter-spacing:8px;
+opacity:0.7;
+}
+
+/* Glitch leve */
 @keyframes glitch{
 0%{transform:translate(0);}
 20%{transform:translate(-1px,1px);}
@@ -48,50 +60,13 @@ animation:glitch 3s infinite;
 100%{transform:translate(0);}
 }
 
-/* Capa */
-#album{
-width:300px;
-height:300px;
-background:url('https://picsum.photos/600/600?grayscale') center/cover;
-box-shadow:0 0 40px rgba(255,0,0,0.2);
-}
-
-/* Timer */
+/* Timer discreto */
 #timer{
 position:absolute;
-bottom:60px;
-font-size:28px;
-letter-spacing:8px;
-opacity:0.8;
-}
-
-/* Partículas */
-.particle{
-position:absolute;
-width:2px;
-height:2px;
-background:white;
-opacity:0.5;
-animation:float linear infinite;
-}
-
-@keyframes float{
-from{transform:translateY(0);}
-to{transform:translateY(-100vh);}
-}
-
-/* Morcegos */
-.bat{
-position:absolute;
-width:40px;
-fill:white;
-opacity:0.2;
-animation:fly linear infinite;
-}
-
-@keyframes fly{
-from{transform:translateX(-10vw);}
-to{transform:translateX(110vw);}
+bottom:40px;
+font-size:18px;
+letter-spacing:6px;
+opacity:0.4;
 }
 
 </style>
@@ -99,12 +74,11 @@ to{transform:translateX(110vw);}
 
 <body>
 
-<div id="album" class="glitch"></div>
+<div id="album"></div>
+<div id="artist">IERRIS SCATT</div>
 <div id="timer">████ ████ ████</div>
 
 <script>
-
-/* TIMER BIZARRO */
 const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 function randomText(){
 let t="";
@@ -116,36 +90,7 @@ return t;
 }
 setInterval(()=>{
 document.getElementById("timer").innerText=randomText();
-},1000);
-
-
-/* PARTÍCULAS */
-for(let i=0;i<150;i++){
-let p=document.createElement("div");
-p.className="particle";
-p.style.left=Math.random()*100+"vw";
-p.style.top=Math.random()*100+"vh";
-p.style.animationDuration=(5+Math.random()*5)+"s";
-document.body.appendChild(p);
-}
-
-
-/* MORCEGOS SVG */
-function createBat(top,delay){
-let bat=document.createElementNS("http://www.w3.org/2000/svg","svg");
-bat.setAttribute("viewBox","0 0 24 24");
-bat.classList.add("bat");
-bat.style.top=top;
-bat.style.animationDuration="12s";
-bat.style.animationDelay=delay;
-bat.innerHTML=`<path d="M12 2L9 8L2 9L8 12L6 20L12 15L18 20L16 12L22 9L15 8Z"/>`;
-document.body.appendChild(bat);
-}
-
-createBat("20%","0s");
-createBat("40%","4s");
-createBat("60%","8s");
-
+},1200);
 </script>
 
 </body>
