@@ -146,10 +146,24 @@ z-index:-2;
 
 /* Nome */
 #artist{
+#artist{
 margin-top:30px;
 font-size:22px;
 letter-spacing:8px;
-opacity:0.7;
+opacity:0.9;
+font-family: -apple-system, "SF Pro Text", "SF Pro Display", "San Francisco", system-ui, 'Arial Black', Arial, sans-serif;
+font-weight:800;
+}
+
+/* Subtítulo abaixo do título do álbum */
+#subtitle{
+	margin-top:8px;
+	font-size:13px;
+	letter-spacing:4px;
+	opacity:0.85;
+	font-family: -apple-system, "SF Pro Text", "SF Pro Display", "San Francisco", system-ui, Arial, sans-serif;
+	font-weight:400;
+	text-transform:none;
 }
 
 /* Glitch leve */
@@ -205,13 +219,14 @@ opacity:0.7;
 /* Mensagem de lançamento assustadora */
 #launch-info{
 	margin-top:18px;
-	font-family: 'Arial Black', Arial, sans-serif;
+	font-family: -apple-system, "SF Pro Text", "SF Pro Display", "San Francisco", system-ui, "Arial Black", Arial, sans-serif;
 	font-size:18px;
 	color:#ffddd0;
 	text-align:center;
 	text-transform:uppercase;
 	letter-spacing:2px;
 	text-shadow:0 2px 10px rgba(0,0,0,0.8);
+	font-weight:800;
 }
 
 #launch-info strong{font-weight:900; display:inline-block; padding:6px 10px; background:rgba(0,0,0,0.12); border-radius:4px;}
@@ -283,10 +298,11 @@ opacity:0.7;
 	<div id="album"></div>
 	<div class="fog fog-front"></div>
 </div>
-<div id="artist">IERRIS SCATT</div>
+<div id="artist">VOID ALBUM</div>
+<div id="subtitle">Ierris Scatt</div>
 
-<!-- Mensagem de lançamento (em negrito, fonte assustadora) -->
-<div id="launch-info"><strong>SERÁ LANÇADO DE ACORDO O O TIMER ABAIXO</strong></div>
+<!-- Mensagem de lançamento (em negrito) -->
+<div id="launch-info"><strong>SERÁ LANÇADO DE ACORDO COM O TIMER ACIMA</strong></div>
 
 <!-- Segundo temporizador bizarro: mostra letras e tem o rótulo "timer" -->
 <div id="weird-timer">timer <span id="weird-seq">████</span></div>
